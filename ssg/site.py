@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 
@@ -12,7 +13,16 @@ class Site:
         directory.mkdir(parents=True, exist_ok=True)
 
     def build(self):
-        self.dest.mkdir(parents=True, exits_ok=True)
+        self.dest.mkdir(parents=True, exist_ok=True)
+
+        for path in self.source.rglob("*"):
+            if os.path.isdir(path):
+                self.create_dir(path)
+
+
+
+
+
 
 
 
